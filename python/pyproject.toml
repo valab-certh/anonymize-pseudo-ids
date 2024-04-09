@@ -1,9 +1,10 @@
 [project]
 dependencies = [
+  "fire==0.6.0",
   "pydicom==2.4.4",
   "tqdm==4.66.2"
 ]
-name = "UNKNOWN"
+name = "pseudo-ids-anonymization"
 version = "0.0.0"
 
 [project.optional-dependencies]
@@ -15,3 +16,9 @@ dev = [
   "ssort==0.12.4",
   "toml-sort==0.23.1"
 ]
+
+[project.scripts]
+pseudo_ids_anonymization = "main:main_cli"
+
+[tool.setuptools]
+py-modules = ["main"]

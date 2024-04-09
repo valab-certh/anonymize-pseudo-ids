@@ -4,6 +4,7 @@ import json
 import warnings
 import pydicom as dicom
 import argparse
+import shutil
 
 from tqdm import tqdm
 
@@ -51,7 +52,7 @@ def generate_unique_id(used_ids):
 def generate_new_dp_ids():
 
     # Load the existing JSON data from a file
-    with open(r'tmp/original.json', 'r') as infile:
+    with open(r'prm/original.json', 'r') as infile:
         data = json.load(infile)
 
     # Create a dictionary to store old IDs and corresponding new ones
@@ -94,6 +95,8 @@ def generate_new_pf_ids():
         "colorectal": ["dp1", "dp2"],
         "lung": ["dp1", "dp2"],
         "prostate": ["dp1", "dp2"]}
+
+
 
     for cancer_type in cancer_types:
         data_providers = dps[cancer_type]
@@ -208,7 +211,7 @@ def anonymize_ids(input_dir_path, id_mapping_file, original_mapping):
                 for dicom_file in dicom_files:
                     anonymize_dicom_file(dicom_file, new_dp_id, new_patient_id)
 
-def main(args):
+def pseudo_ids_anonymization(args):
     
     input_dir_path, id_mapping_file, original_mapping = args.input_dir_path, args.mapping_json, args.original_json
 
@@ -219,11 +222,21 @@ def main(args):
         "lung": ["dp1", "dp2"],
         "prostate": ["dp1", "dp2"]}
 
+    dst_dir_path = r"tmp/incisive2"
+
+    if os.path.exists(dst_dir_path):  # Check if directory exists
+        os.rmdir(dst_dir_path)        # Remove directory
+        print(f"Directory '{dst_dir_path}' deleted successfully.")
+    else:
+        print(f"Directory '{dst_dir_path}' does not exist.")
+
+    shutil.copytree(input_dir_path, "tmp/incisive2", dirs_exist_ok=True)
+    
     for cancer_type in cancer_types:
         data_providers = dps[cancer_type]
         for data_provider in data_providers:
 
-            working_path = f"{input_dir_path}/{cancer_type}/{data_provider}"
+            working_path = f"{dst_dir_path}/{cancer_type}/{data_provider}"
             print(f"Anonymizing {cancer_type}-{data_provider}")
         
             # Pseudo-IDs Anonymization
@@ -233,14 +246,19 @@ def main(args):
 
             # Image Anonymization
 
+def main_cli() -> None:
+    import fire
+
+    fire.Fire(pseudo_ids_anonymization)
+
 if __name__ == "__main__":
 
     # Initialize ArgumentParser
     parser = argparse.ArgumentParser(description='Anonymize IDs Script')
-    parser.add_argument('--input_dir_path', type=str, default=r"prm/incisive2-anon", help='Path to apply IDs anonymization to')
+    parser.add_argument('--input_dir_path', type=str, default=r"prm/incisive2", help='Path to apply IDs anonymization to')
     parser.add_argument('--mapping_json', type=str, default=r"prm/id_mapping.json", help='Path to mapping json file')
     parser.add_argument('--original_json', type=str, default=r"prm/original.json", help='Path to original mapping json file')
     # Parse the arguments
     args = parser.parse_args()
 
-    main(args)
+    pseudo_ids_anonymization(args)
