@@ -1,7 +1,7 @@
 [project]
 dependencies = [
   "pydicom==2.4.4",
-  "tqdm==2.2.3"
+  "tqdm==4.66.2"
 ]
 name = "UNKNOWN"
 version = "0.0.0"
