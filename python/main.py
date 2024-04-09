@@ -51,7 +51,7 @@ def generate_unique_id(used_ids):
 def generate_new_dp_ids():
 
     # Load the existing JSON data from a file
-    with open(r'python/prm/original.json', 'r') as infile:
+    with open(r'tmp/original.json', 'r') as infile:
         data = json.load(infile)
 
     # Create a dictionary to store old IDs and corresponding new ones
@@ -67,12 +67,12 @@ def generate_new_dp_ids():
         id_mapping[old_id] = new_id
 
     # Write the updated data to a new JSON file
-    new_json_path = r'python/prm/new_data.json' 
+    new_json_path = r'prm/new_data.json' 
     with open(new_json_path, 'w') as outfile:
         json.dump(new_data, outfile, indent=4)
 
     # Write the ID mapping to a separate JSON file
-    id_mapping_path = r"python/prm/id_mapping.json"
+    id_mapping_path = r"prm/id_mapping.json"
     with open(id_mapping_path, 'w') as outfile:
         json.dump(id_mapping, outfile, indent=4)
 
@@ -99,7 +99,7 @@ def generate_new_pf_ids():
         data_providers = dps[cancer_type]
         for data_provider in data_providers:
 
-            input_dir_path = rf"python/prm/incisive2/{cancer_type}/{data_provider}"
+            input_dir_path = rf"prm/incisive2/{cancer_type}/{data_provider}"
 
             dp = os.path.basename(input_dir_path)
             parent_dir = os.path.dirname(input_dir_path)
@@ -237,9 +237,9 @@ if __name__ == "__main__":
 
     # Initialize ArgumentParser
     parser = argparse.ArgumentParser(description='Anonymize IDs Script')
-    parser.add_argument('--input_dir_path', type=str, default=r"python/prm/incisive2-anon", help='Path to apply IDs anonymization to')
-    parser.add_argument('--mapping_json', type=str, default=r"python/prm/id_mapping.json", help='Path to mapping json file')
-    parser.add_argument('--original_json', type=str, default=r"python/prm/original.json", help='Path to original mapping json file')
+    parser.add_argument('--input_dir_path', type=str, default=r"prm/incisive2-anon", help='Path to apply IDs anonymization to')
+    parser.add_argument('--mapping_json', type=str, default=r"prm/id_mapping.json", help='Path to mapping json file')
+    parser.add_argument('--original_json', type=str, default=r"prm/original.json", help='Path to original mapping json file')
     # Parse the arguments
     args = parser.parse_args()
 
