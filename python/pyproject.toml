@@ -4,7 +4,7 @@ dependencies = [
   "pydicom==2.4.4",
   "tqdm==4.66.2"
 ]
-name = "anonyzime-pseudo-ids"
+name = "anonymize-pseudo-ids"
 version = "0.0.0"
 
 [project.optional-dependencies]
@@ -18,7 +18,7 @@ dev = [
 ]
 
 [project.scripts]
-anonyzime_pseudo_ids = "main:main_cli"
+anonymize_pseudo_ids = "main:main_cli"
 
 [tool.setuptools]
 py-modules = ["main"]
