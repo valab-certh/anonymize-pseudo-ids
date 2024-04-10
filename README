@@ -1,4 +1,4 @@
-# pseudo-ids-anonymization
+# anonyzime-pesudo-ids
 
 # Requirements
 POSIX Shell & Utilities
@@ -6,8 +6,8 @@ Git
 Docker
 
 # Download
-git clone github.com/valab-certh/pseudo-ids-anonymization.git $HOME/github.com/valab-certh/pseudo-ids-anonymization
-cd $HOME/github.com/valab-certh/pseudo-ids-anonymization
+git clone github.com/valab-certh/anonyzime-pseudo-ids.git $HOME/github.com/valab-certh/anonyzime-pseudo-ids
+cd $HOME/github.com/valab-certh/anonyzime-pseudo_ids
 
 # Development
 cd python/python/ && make clean check all && cd ../..
@@ -17,7 +17,7 @@ cd python/ && make clean check all && cd ..
 cd python/ && make STAGING=1
 
 # Installation
-pip install https://api.github.com/repos/valab-certh/pseudo-ids-anonymization/tarball/main#subdirectory=python
+pip install https://api.github.com/repos/valab-certh/anonyzime-pseudo-ids/tarball/main#subdirectory=python
 
 # Usage
-pseudo_ids_anonymization "prm/incisive2"
+anonyzime_pseudo_ids "prm/incisive2"

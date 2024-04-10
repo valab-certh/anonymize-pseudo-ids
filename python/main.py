@@ -211,7 +211,7 @@ def anonymize_ids(input_dir_path, mapping_json, original_json):
                 for dicom_file in dicom_files:
                     anonymize_dicom_file(dicom_file, new_dp_id, new_patient_id)
 
-def pseudo_ids_anonymization(input_dir, mapping_json=r"prm/id_mapping.json", original_json=r"prm/original.json"):
+def anonyzime_pesudo_ids(input_dir, mapping_json=r"prm/id_mapping.json", original_json=r"prm/original.json"):
 
     cancer_types = ["breast", "colorectal", "lung", "prostate"]
 
@@ -247,7 +247,7 @@ def pseudo_ids_anonymization(input_dir, mapping_json=r"prm/id_mapping.json", ori
 def main_cli() -> None:
     import fire
 
-    fire.Fire(pseudo_ids_anonymization)
+    fire.Fire(anonyzime_pesudo_ids)
 
 if __name__ == "__main__":
 
@@ -256,4 +256,4 @@ if __name__ == "__main__":
     mapping_json = r"prm/id_mapping.json"
     original_json = r"prm/original.json"
 
-    pseudo_ids_anonymization(input_dir, mapping_json, original_json)
+    anonyzime_pesudo_ids(input_dir, mapping_json, original_json)
