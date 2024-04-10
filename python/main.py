@@ -96,8 +96,6 @@ def generate_new_pf_ids():
         "lung": ["dp1", "dp2"],
         "prostate": ["dp1", "dp2"]}
 
-
-
     for cancer_type in cancer_types:
         data_providers = dps[cancer_type]
         for data_provider in data_providers:
