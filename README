@@ -20,4 +20,4 @@ cd python/ && make STAGING=1
 pip install https://api.github.com/repos/valab-certh/pseudo-ids-anonymization/tarball/main#subdirectory=python
 
 # Usage
-correct_dicom_directory_structure "prm/incisive2"
+pseudo_ids_anonymization "prm/incisive2"
