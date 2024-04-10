@@ -8,9 +8,9 @@ import shutil
 
 from tqdm import tqdm
 
-def get_new_triplet(provider, id_mapping_file, data_file):
+def get_new_triplet(provider, mapping_json, data_file):
     # Load ID mapping from JSON file
-    with open(id_mapping_file, 'r') as infile:
+    with open(mapping_json, 'r') as infile:
         id_mapping = json.load(infile)
 
     # Load original data from JSON file
@@ -31,9 +31,9 @@ def get_new_triplet(provider, id_mapping_file, data_file):
     else:
         return "Error: Provider not found in the data"
     
-def get_new_id(old_id, id_mapping_file):
+def get_new_id(old_id, mapping_json):
     # Load ID mapping from JSON file
-    with open(id_mapping_file, 'r') as infile:
+    with open(mapping_json, 'r') as infile:
         id_mapping = json.load(infile)
 
     # Check if the old ID exists in the mapping
@@ -140,7 +140,7 @@ def generate_new_pf_ids():
             with open(os.path.join(working_dir, f"id_mapping_{os.path.basename(parent_dir)}.json"), 'w') as json_file:
                 json.dump(id_mapping, json_file, indent=4)
 
-def anonymize_ids(input_dir_path, id_mapping_file, original_mapping):
+def anonymize_ids(input_dir_path, mapping_json, original_json):
 
     def rename_entity(entity_path, new_name):
         parent_dir = os.path.dirname(entity_path)
@@ -171,7 +171,7 @@ def anonymize_ids(input_dir_path, id_mapping_file, original_mapping):
     dp_name = os.path.basename(input_dir_path)
     cancer_type = os.path.basename(os.path.dirname(input_dir_path))
 
-    new_dp_id = get_new_triplet(dp_name, id_mapping_file, original_mapping)
+    new_dp_id = get_new_triplet(dp_name, mapping_json, original_json)
     patient_mapping_file = os.path.join(input_data_path, f"id_mapping_{cancer_type}.json")
     
     patient_names = [
@@ -211,9 +211,7 @@ def anonymize_ids(input_dir_path, id_mapping_file, original_mapping):
                 for dicom_file in dicom_files:
                     anonymize_dicom_file(dicom_file, new_dp_id, new_patient_id)
 
-def pseudo_ids_anonymization(args):
-    
-    input_dir, id_mapping_file, original_mapping = args.input_dir, args.mapping_json, args.original_json
+def pseudo_ids_anonymization(input_dir, mapping_json=r"prm/id_mapping.json", original_json=r"prm/original.json"):
 
     cancer_types = ["breast", "colorectal", "lung", "prostate"]
 
@@ -240,7 +238,7 @@ def pseudo_ids_anonymization(args):
             print(f"Anonymizing {cancer_type}-{data_provider}")
         
             # Pseudo-IDs Anonymization
-            anonymize_ids(working_path, id_mapping_file, original_mapping)
+            anonymize_ids(working_path, mapping_json, original_json)
 
             # Excel Anonymization
 
