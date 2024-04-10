@@ -251,9 +251,6 @@ def main_cli() -> None:
 
 if __name__ == "__main__":
 
-    # Initialize ArgumentParser
     input_dir = r"prm/incisive2"
-    mapping_json = r"prm/id_mapping.json"
-    original_json = r"prm/original.json"
 
-    anonymize_pseudo_ids(input_dir, mapping_json, original_json)
+    anonymize_pseudo_ids(input_dir)
