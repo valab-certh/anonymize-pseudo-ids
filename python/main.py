@@ -213,7 +213,7 @@ def anonymize_ids(input_dir_path, id_mapping_file, original_mapping):
 
 def pseudo_ids_anonymization(args):
     
-    input_dir_path, id_mapping_file, original_mapping = args.input_dir_path, args.mapping_json, args.original_json
+    input_dir, id_mapping_file, original_mapping = args.input_dir, args.mapping_json, args.original_json
 
     cancer_types = ["breast", "colorectal", "lung", "prostate"]
 
@@ -230,7 +230,7 @@ def pseudo_ids_anonymization(args):
     else:
         print(f"Directory '{dst_dir_path}' does not exist.")
 
-    shutil.copytree(input_dir_path, "tmp/incisive2", dirs_exist_ok=True)
+    shutil.copytree(input_dir, "tmp/incisive2", dirs_exist_ok=True)
     
     for cancer_type in cancer_types:
         data_providers = dps[cancer_type]
@@ -255,7 +255,7 @@ if __name__ == "__main__":
 
     # Initialize ArgumentParser
     parser = argparse.ArgumentParser(description='Anonymize IDs Script')
-    parser.add_argument('--input_dir_path', type=str, default=r"prm/incisive2", help='Path to apply IDs anonymization to')
+    parser.add_argument('--input_dir', type=str, default=r"prm/incisive2", help='Path to apply IDs anonymization to')
     parser.add_argument('--mapping_json', type=str, default=r"prm/id_mapping.json", help='Path to mapping json file')
     parser.add_argument('--original_json', type=str, default=r"prm/original.json", help='Path to original mapping json file')
     # Parse the arguments
