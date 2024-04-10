@@ -254,11 +254,8 @@ def main_cli() -> None:
 if __name__ == "__main__":
 
     # Initialize ArgumentParser
-    parser = argparse.ArgumentParser(description='Anonymize IDs Script')
-    parser.add_argument('--input_dir', type=str, default=r"prm/incisive2", help='Path to apply IDs anonymization to')
-    parser.add_argument('--mapping_json', type=str, default=r"prm/id_mapping.json", help='Path to mapping json file')
-    parser.add_argument('--original_json', type=str, default=r"prm/original.json", help='Path to original mapping json file')
-    # Parse the arguments
-    args = parser.parse_args()
+    input_dir = r"prm/incisive2"
+    mapping_json = r"prm/id_mapping.json"
+    original_json = r"prm/original.json"
 
-    pseudo_ids_anonymization(args)
+    pseudo_ids_anonymization(input_dir, mapping_json, original_json)
