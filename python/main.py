@@ -103,7 +103,7 @@ def generate_new_pf_ids() -> None:
             input_dir_path = Path(rf"prm/incisive2/{cancer_type}/{data_provider}")
 
             Path.name(input_dir_path)
-            parent_dir = Path.parent(input_dir_path)
+            parent_dir = input_dir_path.parent
             working_dir = Path(input_dir_path, "data")
 
             patient_folder_names = [
@@ -144,7 +144,7 @@ def generate_new_pf_ids() -> None:
             with Path.open(
                 Path(
                     working_dir,
-                    f"id_mapping_{Path.name(parent_dir)}.json",
+                    f"id_mapping_{parent_dir.name}.json",
                 ),
                 "w",
             ) as json_file:
@@ -157,7 +157,7 @@ def anonymize_ids(
     original_json: Path,
 ) -> None:
     def rename_entity(entity_path: Path, new_name: str) -> Path:
-        parent_dir = Path.parent(entity_path)
+        parent_dir = entity_path.parent
         new_entity_path = Path(parent_dir, new_name)
         Path.rename(entity_path, new_entity_path)
         return new_entity_path
@@ -187,7 +187,7 @@ def anonymize_ids(
 
     input_data_path = Path(input_dir_path, "data")
     dp_name = input_dir_path.name
-    cancer_type = Path.name(Path.parent(input_dir_path))
+    cancer_type = input_dir_path.parent.name
 
     new_dp_id = get_new_triplet(dp_name, mapping_json, original_json)
     patient_mapping_file = Path(
