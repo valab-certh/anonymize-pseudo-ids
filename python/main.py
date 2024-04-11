@@ -111,7 +111,7 @@ def generate_new_pf_ids() -> None:
                 for filename in os.listdir(working_dir)
                 if Path.is_dir(Path(working_dir, filename))
             ]
-            patient_foder_basenames = [Path.name(pf) for pf in patient_folder_names]
+            patient_foder_basenames = [pf.name for pf in patient_folder_names]
             patient_ids = [
                 basename.split("-")[-1] for basename in patient_foder_basenames
             ]
@@ -206,7 +206,7 @@ def anonymize_ids(
         total=len(patient_names),
         desc="Anonymizing patients",
     ):
-        old_patient_id = Path.name(patient_name).split("-")[-1]
+        old_patient_id = str(patient_name.name).split("-")[-1]
         new_patient_id = get_new_id(old_patient_id, patient_mapping_file)
         new_patient_name = f"{new_dp_id}-{new_patient_id}"
         new_patient_path = rename_entity(patient_name, new_patient_name)
