@@ -251,6 +251,8 @@ def anonymize_pseudo_ids(
     }
 
     dst_dir_path = Path(r"tmp/incisive2")
+    mapping_json = Path(r"prm/id_mapping.json")
+    original_json = Path(r"prm/original.json")
 
     if Path.exists(dst_dir_path):  # Check if directory exists
         Path.rmdir(dst_dir_path)  # Remove directory
