@@ -239,9 +239,8 @@ def anonymize_ids(
 
 def anonymize_pseudo_ids(
     input_dir: Path,
-    mapping_json: Path = Path(r"prm/id_mapping.json"),
-    original_json: Path = Path(r"prm/original.json"),
-) -> None:
+    mapping_json: Path,
+    original_json: Path) -> None:
     cancer_types = ["breast", "colorectal", "lung", "prostate"]
 
     dps = {
@@ -281,5 +280,7 @@ def main_cli() -> None:
 
 if __name__ == "__main__":
     input_dir = Path(r"prm/incisive2")
+    mapping_json = Path(r"prm/id_mapping.json")
+    original_json = Path(r"prm/original.json")
 
-    anonymize_pseudo_ids(input_dir)
+    anonymize_pseudo_ids(input_dir, mapping_json, original_json)
