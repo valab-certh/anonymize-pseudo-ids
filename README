@@ -10,7 +10,6 @@ git clone github.com/valab-certh/anonymize-pseudo-ids.git $HOME/github.com/valab
 cd $HOME/github.com/valab-certh/anonymize-pseudo_ids
 
 # Development
-cd python/python/ && make clean check all && cd ../..
 cd python/ && make clean check all && cd ..
 
 # Staging
@@ -20,4 +19,4 @@ cd python/ && make STAGING=1
 pip install https://api.github.com/repos/valab-certh/anonymize-pseudo-ids/tarball/main#subdirectory=python
 
 # Usage
-anonymize_pseudo_ids "prm/incisive2"
+anonymize_pseudo_ids "python/prm/incisive2"

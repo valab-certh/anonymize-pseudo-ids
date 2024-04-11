@@ -9,3 +9,19 @@ jobs:
       - name: Check code and build
         run: |
           cd python/ && make clean check all && cd ..
+  pip:
+    needs: [make]
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-2022,macos-14]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Check pip installation
+        run: |
+          pip install https://api.github.com/repos/valab-certh/anonymize-pseudo-ids/tarball/main#subdirectory=python
+          anonymiza_pseudo_ids "python/prm/incisive2"
