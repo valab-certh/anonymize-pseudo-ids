@@ -186,7 +186,7 @@ def anonymize_ids(
             pass
 
     input_data_path = Path(input_dir_path, "data")
-    dp_name = Path.name(input_dir_path)
+    dp_name = input_dir_path.name
     cancer_type = Path.name(Path.parent(input_dir_path))
 
     new_dp_id = get_new_triplet(dp_name, mapping_json, original_json)
