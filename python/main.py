@@ -238,9 +238,8 @@ def anonymize_ids(
 
 
 def anonymize_pseudo_ids(
-    input_dir: Path,
-    mapping_json: Path,
-    original_json: Path) -> None:
+    input_dir: Path, mapping_json: Path, original_json: Path,
+) -> None:
     cancer_types = ["breast", "colorectal", "lung", "prostate"]
 
     dps = {
