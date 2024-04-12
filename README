@@ -1,4 +1,14 @@
-# anonymize-pseudo-ids
+# Anonymize pseudo ids
+The user must ensure that the input directory follows the proposed structure
+database/
+├─ cancer_type/
+│  ├─ data_provider/
+│  │  ├─ data/
+│  │  │  ├─ patient/
+│  │  │  │  ├─ study/
+│  │  │  │  │  ├─ series/
+│  │  │  │  │  │  ├─ Image.dcm
+│  │  │  │  │  │  ├─ Image.nii.gz
 
 # Requirements
 POSIX Shell & Utilities
@@ -19,4 +29,4 @@ cd python/ && make STAGING=1
 pip install https://api.github.com/repos/valab-certh/anonymize-pseudo-ids/tarball/main#subdirectory=python
 
 # Usage
-anonymize_pseudo_ids "python/prm/incisive2" "python/prm/id_mapping.json" "python/prm/original.json" 
+anonymize_pseudo_ids "python/prm/incisive2" "python/prm/id_mapping.json" "python/prm/original.json"
