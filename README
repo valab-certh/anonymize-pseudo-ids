@@ -1,4 +1,4 @@
-# Anonymize pseudo ids
+# Anonymize pseudo-IDs
 The user must ensure that the input directory follows the proposed structure
 database/
 ├─ cancer_type/
@@ -17,7 +17,7 @@ Docker
 
 # Download
 git clone github.com/valab-certh/anonymize-pseudo-ids.git $HOME/github.com/valab-certh/anonymize-pseudo-ids
-cd $HOME/github.com/valab-certh/anonymize-pseudo_ids
+cd $HOME/github.com/valab-certh/anonymize-pseudo-ids
 
 # Development
 cd python/ && make clean check all && cd ..
