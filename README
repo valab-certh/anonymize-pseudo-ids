@@ -11,7 +11,7 @@ database/
 │  │  │  │  │  │  ├─ Image.nii.gz
 
 # Installation requirements
-Python 3.9+
+Python 3.11+
 
 # Installation
 pip install https://api.github.com/repos/valab-certh/anonymize-pseudo-ids/tarball/main#subdirectory=python
